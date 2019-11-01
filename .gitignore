@@ -1,3 +1,9 @@
+### Original ###
+
+db/data
+
+### Ruby on Rails ###
+
 *.rbc
 capybara-*.html
 .rspec
@@ -65,3 +71,4 @@ npm-debug.log
 dist
 
 # End of https://www.gitignore.io/api/nuxtjs
+
