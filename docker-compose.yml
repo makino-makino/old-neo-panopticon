@@ -1,13 +1,14 @@
 version: '3'
 services:
   app:
-    build: ./app
+    image: node:8.16.2-jessie
     ports:
       - "3001:3001"
     working_dir: /app
-    command: npm run dev
+    command: sh -c 'npm install && npm run dev'
     volumes:
       - "./app:/app"
+      - "/app/node_modules"
     environment:
       - HOST=0.0.0.0
       - PORT=3001
