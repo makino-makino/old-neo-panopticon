@@ -2,6 +2,9 @@
 
 db/data
 
+### vim swap file ###
+*~
+
 ### Ruby on Rails ###
 
 *.rbc
