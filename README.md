@@ -13,7 +13,7 @@ $ cd neo-panopticon
 $ sudo docker-compose up -d --build
 $
 $ # しばらく時間をおいて
-$ sudo docker-compose run api rails db:create
+$ sudo docker-compose run api rails db:create && rails db:migrate RAILS_ENV=development
 ```
 
 ### 2回目以降
