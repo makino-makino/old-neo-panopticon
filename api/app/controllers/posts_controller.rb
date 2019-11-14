@@ -5,7 +5,38 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    params.require(:type)
+    params.permit(:type, :numbers, :start_created, :start_id)
+
+    # set values
+    if params[:type] == "global"
+      users = User.all
+    elsif params[:type] == "local"
+      users = User.where(id: Following.where(from: current_user.id))
+    end
+
+    if not params[:numbers].nil?
+      numbers = params[:numbers].to_i
+    else
+      numbers = 20
+    end
+
+    if not params[:start_created].nil?
+      start_created = params[:start_created]
+    else
+      start_created = 0
+    end
+
+    if not params[:start_id].nil?
+      start_id = params[:start_id]
+    else
+      start_id = 0
+    end
+
+    @posts = Post.where('id >= ? and created_at >= ?', start_id, start_created)
+                 .where(id: users)
+                 .first(numbers)
+
   end
 
   # GET /posts/1
@@ -33,14 +64,22 @@ class PostsController < ApplicationController
     score = params[:score]
 
     # TODO: Validation
+    # -> done
 
     @post = Post.find_by(params['id'])
-    @evaluation = PostEvaluation.new(post: @post, user:current_user, score: score)
 
-    if @evaluation.save
+    # validate
+    if not (evaluation = PostEvaluation.find_by(post_id: @post.id, user_id: current_user.id)).nil? 
+      @evaluation = evaluation
       render :eval
     else
-      render json: @evaluation.errors, status: :unprocessable_entity
+      @evaluation = PostEvaluation.new(post: @post, user:current_user, score: score)
+
+      if @evaluation.save
+        render :eval
+      else
+        render json: @evaluation.errors, status: :unprocessable_entity
+      end
     end
 
   end
