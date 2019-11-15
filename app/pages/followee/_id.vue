@@ -10,16 +10,21 @@ import UserListView from '~/components/UserListView.vue'
 import axios from 'axios'
 
 
-const USER_API = '/api/users/'
-
 export default {
   components: {
     UserListView
   },
+  validate ({ params }) {
+    return /^\d+$/.test(params.id)
+  },
+  asyncData ({ params }) {
+    return {
+      query: `followee=${params.id}`
+    }
+  },
   data() {
-      return {
-        query: ''
-      }
+    return {
+    }
   },
   methods: {
     

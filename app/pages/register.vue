@@ -26,7 +26,7 @@ const SIGN_UP_API = '/api/auth'
 export default {
   components: {
   },
-  data: () => {
+  data() {
     return {
       name: '',
       email: '',
@@ -50,6 +50,8 @@ export default {
         localStorage.client = resp.headers.client;
         localStorage.uid = resp.headers.uid;
         
+        localStorage.userId = resp.data.data.id;
+
         // TODO: ちゃんと次の場所にジャンプさせる
         location.href = '/'
 

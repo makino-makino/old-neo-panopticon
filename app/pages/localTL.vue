@@ -1,6 +1,6 @@
 <template>
   <div>    
-    <PostListView v-bind:query="query"/>
+    <PostListView v-if="loaded" v-bind:query="query"/>
   </div>
 </template>
 
@@ -9,15 +9,21 @@
 import PostListView from '~/components/PostListView.vue'
 import axios from 'axios'
 
-
 export default {
   components: {
     PostListView
   },
-  data: () => {
+  mounted() {
+    var userId = localStorage.userId
+    this.query = `tl=local&followers=${userId}`
+    this.loaded = true
+  },
+
+  data() {
     return {
       posts: [],
-      query: 'tl=local'
+      query: '',
+      loaded: false
     }
   },
   methods: {

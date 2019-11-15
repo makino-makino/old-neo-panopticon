@@ -1,40 +1,29 @@
 <template>
   <div>
-    <p>{{id}}</p>
-    <p>{{name}}</p>
-    <p>{{bio}}</p>
-    <p>{{icon}}</p>
-    <p>{{evaluation}}</p>
-    <button v-on:click="follow(id)">follow</button>
+    <textarea v-model="content"></textarea><br>
+    <button v-on:click="submit">投稿</button>
   </div>
 </template>
 
 <script>
 
+import NavigationBar from '~/components/NavigationBar.vue'
 import axios from 'axios'
 
-const USER_API = '/api/users/'
-const FOLLOWINGS_API = '/api/followings'
+const POSTS_API = '/api/posts'
 
 
 export default {
-  props: {
-    id: Number,
-    name: String,
-    bio: String,
-    icon: String,
-    evaluation: Number
-  },
-  async mounted() {
-
+  components: {
   },
   data() {
     return {
-      user: {}
+      content: ''
     }
   },
+
   methods: {
-    async follow(user_id) {
+    async submit (e) {
       const HEADERS = {
         'Accept': 'application/json',
         'access-token': localStorage.access_token,
@@ -43,9 +32,9 @@ export default {
       }
 
       var resp = await axios.post(
-        FOLLOWINGS_API, 
+        POSTS_API, 
         {
-          to_id: user_id
+          content: this.content
         },
         {
           headers: HEADERS,
@@ -56,10 +45,9 @@ export default {
       // TODO: ちゃんと次の場所にジャンプさせる
       location.href = '/'
 
+
     }
-
   }
-
 }
 
 
