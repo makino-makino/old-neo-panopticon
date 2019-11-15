@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <h1>新規登録</h1>
-    
-    <PostListView/>
+  <div>    
+    <PostListView v-bind:query="query"/>
   </div>
 </template>
 
@@ -20,8 +18,8 @@ export default {
   },
   data: () => {
     return {
-      posts: []
-
+      posts: [],
+      query: 'tl=global'
     }
   },
   methods: {

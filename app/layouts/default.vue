@@ -1,13 +1,33 @@
 <template>
   <div>
+    <!-- <NavigationBar :titleItem="{rightTitle: 'right title', leftTitle: 'left titile', title: 'title'}" /> -->
     <nuxt />
   </div>
 </template>
 
-<style>
+<script>
+import NavigationBar from "~/components/NavigationBar.vue"
+import TabBar from "~/components/TabBar.vue"
+import { mapState } from "vuex"
+export default {
+  components: {
+    NavigationBar,
+    // TabBar
+  },
+  computed: mapState([
+    'titleItem',
+  ])
+};
+</script>
+
+<style lang="scss">
+div.contents{
+  padding-top: $navigationbarheight;
+  padding-bottom: $tabheight;
+}
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

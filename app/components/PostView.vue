@@ -1,10 +1,12 @@
 <template>
   <div>
     <p>{{user.name}}</p>
-    <!-- <p>{{user.img}}</p> -->
+    <p>{{user.icon}}</p>
     <p>{{content}}</p>
-    <p>{{created_at}}</p>
+    <p>{{createdAt}}</p>
     <p>{{evaluation}}</p>
+
+    ---
   </div>
 </template>
 
@@ -12,18 +14,16 @@
 
 import axios from 'axios'
 
-const USER_API = '/api/users/'
+const USERS_API = '/api/users/'
 
 export default {
   props: {
     content: String,
-    user_id: Number, 
-    created_at: String,
+    userId: String, 
+    createdAt: String,
     evaluation: Number
   },
   async mounted () {
-    console.log(this)
-
     const HEADERS = {
       'Accept': 'application/json',
       'access-token': localStorage.access_token,
@@ -31,19 +31,14 @@ export default {
       'uid': localStorage.uid
     }
 
-    // try {
-      this.user_id = 1
-      var resp = await axios.get(
-        USER_API + this.user_id, 
-        { headers: HEADERS }
-      )
+    var resp = await axios.get(
+      USERS_API + this.userId, 
+      { headers: HEADERS }
+    )
 
-      this.user = resp.data
+    this.user = resp.data
 
 
-    // } catch (e) {
-      // TODO: 
-    // }    
   },
   data() {
     return {

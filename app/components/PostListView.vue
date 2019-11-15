@@ -2,8 +2,8 @@
   <div>
       <div v-for='post in posts'> 
         <PostView v-bind:content="post.content"
-            v-bind:user_id="post.user_id"
-            v-bind:created_at="post.created_at"
+            v-bind:userId="post.user_id"
+            v-bind:created_at="post.createdAt"
             v-bind:evaluation="post.evaluation" />
       </div> 
 
@@ -19,10 +19,13 @@ import axios from 'axios'
 const POSTS_API = '/api/posts'
 
 export default {
+  props: {
+    query: String
+  },
   components: {
     PostView
   },
-  async mounted () {
+  async mounted() {
     const HEADERS = {
       'Accept': 'application/json',
       'access-token': localStorage.access_token,
@@ -31,7 +34,7 @@ export default {
     }
 
     var resp = await axios.get(
-      POSTS_API, 
+      `${POSTS_API}?${this.query}`, 
       { headers: HEADERS }
     )
 

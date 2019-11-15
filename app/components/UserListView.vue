@@ -6,6 +6,7 @@
             v-bind:bio="user.bio"
             v-bind:icon="user.icon"
             v-bind:evaluation="user.evaluation" />
+        <p>---</p>
       </div> 
 
   </div>
@@ -26,7 +27,7 @@ export default {
   props: {
     query: String
   },
-  async mounted () {
+  async mounted() {
     const HEADERS = {
       'Accept': 'application/json',
       'access-token': localStorage.access_token,
