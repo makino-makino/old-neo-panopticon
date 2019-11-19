@@ -16,7 +16,7 @@ services:
       - api
   api:
     build: ./api
-    command: sh -c "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: sh run.sh 
     volumes:
       - ./api:/api
     ports:
