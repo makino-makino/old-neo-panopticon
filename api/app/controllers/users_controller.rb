@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -36,7 +36,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   # def create
-  #   @user = User.new(user_params)
+  #   params.require([:name, :email, :phone, :password])
+  #   @user = User.new(name: params[:name], email: params[:email], phone: params[:phone], password: params[:password])
+
   #   if @user.save
   #     render :show, status: :created, location: @user
   #   else
@@ -68,6 +70,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.permit([:name, :email, :phone, :password])
+      params.require([:name, :email, :phone, :password])
     end
 end
