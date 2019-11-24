@@ -1,34 +1,35 @@
 <template>
-  <div>    
-    <PostListView v-bind:query="query"/>
+  <div>
+    <PostListView v-bind:query="query" />
   </div>
 </template>
 
 <script>
-
-import NavigationBar from '~/components/NavigationBar.vue'
-import PostListView from '~/components/PostListView.vue'
-import axios from 'axios'
-
+import NavigationBar from "~/components/NavigationBar.vue";
+import PostListView from "~/components/PostListView.vue";
+import axios from "axios";
 
 export default {
+  fetch({ store }) {
+    return store.commit("setNavigationBar", "グローバル");
+  },
   components: {
     NavigationBar,
     PostListView
   },
+  head() {
+    return {
+      title: `Global TL`
+    };
+  },
   data: () => {
     return {
       posts: [],
-      query: 'tl=global'
-    }
+      query: "tl=global"
+    };
   },
-  methods: {
-    
-  }
-}
-
-
-
+  methods: {}
+};
 </script>
 
 <style>

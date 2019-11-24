@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>neo-panopticon.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>8933466F3A47AEB5AF48609E96A896B011B1590C</string>
+				<key>dateExpires</key>
+				<string>2020/11/23</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>XNNJ64W9XB.com.makinomakino</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>XNNJ64W9XB</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>neo-panopticon.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>d54d0634-d8cd-4afe-a026-e887844d9085</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.makinomakino</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>XNNJ64W9XB</string>
+				<key>name</key>
+				<string>Shunta Nakajima</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

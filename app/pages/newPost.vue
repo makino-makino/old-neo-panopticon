@@ -1,59 +1,85 @@
 <template>
-  <div>
-    <textarea v-model="content"></textarea><br>
-    <button v-on:click="submit">投稿</button>
+  <div class="content">
+    <textarea v-model="content" placeholder="新しい投稿"></textarea>
+    <button class="pure-button button" v-on:click="submit">投稿</button>
   </div>
 </template>
 
 <script>
+import NavigationBar from "~/components/NavigationBar.vue";
+import axios from "axios";
 
-import NavigationBar from '~/components/NavigationBar.vue'
-import axios from 'axios'
-
-const POSTS_API = '/api/posts'
-
+const POSTS_API = "/api/posts";
 
 export default {
-  components: {
+  fetch({ store }) {
+    return store.commit("setNavigationBar", "新しい投稿");
   },
+  components: {},
   data() {
     return {
-      content: ''
-    }
+      content: ""
+    };
   },
 
   methods: {
-    async submit (e) {
-      const HEADERS = {
-        'Accept': 'application/json',
-        'access-token': localStorage.access_token,
-        'client': localStorage.client,
-        'uid': localStorage.uid
+    async submit(e) {
+      if (this.content != "") {
+        const HEADERS = {
+          Accept: "application/json",
+          "access-token": localStorage.access_token,
+          client: localStorage.client,
+          uid: localStorage.uid
+        };
+
+        var resp = await axios.post(
+          POSTS_API,
+          {
+            content: this.content
+          },
+          {
+            headers: HEADERS
+          }
+        );
+
+        location.href = "/localTL";
+      } else {
+        alert("投稿を入力してください");
       }
-
-      var resp = await axios.post(
-        POSTS_API, 
-        {
-          content: this.content
-        },
-        {
-          headers: HEADERS,
-          
-        }
-      )
-
-      // TODO: ちゃんと次の場所にジャンプさせる
-      location.href = '/'
-
-
     }
   }
-}
-
-
-
+};
 </script>
 
-<style>
+<style lang="scss">
 /* css */
+.content {
+  padding: 0 5vw;
+}
+textarea {
+  display: block;
+  border: #111111 solid 3px;
+  margin: 0 auto;
+  margin-top: 19px;
+  width: 90vw;
+  height: 57vh;
+  background-color: #d8d8d8;
+  border-radius: 18px;
+  color: black;
+  font-size: 1rem;
+  padding: 15px 18px;
+  line-height: 21px;
+}
+.button {
+  margin-right: 18px;
+  margin-left: auto;
+  height: 48px;
+  width: 100px;
+  padding: 0px;
+  border-radius: 5px;
+  margin-top: 19px;
+  display: block;
+  font-size: 23px;
+  background-color: #777777;
+}
 </style>
