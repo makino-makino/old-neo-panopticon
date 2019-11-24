@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>新しい投稿を作成する</h2>
-    <textarea v-model="content"></textarea>
+    <textarea v-model="content" placeholder="新しい投稿"></textarea>
     <button class="pure-button button" v-on:click="submit">投稿</button>
   </div>
 </template>
@@ -62,11 +62,15 @@ h2 {
 }
 textarea {
   display: block;
-  border: white solid 1px;
+  border: #111111 solid 3px;
   margin: 0 auto;
   margin-top: 19px;
-  width: 300px;
-  height: 200px;
+  width: 90vw;
+  height: 80vh;
+  background-color: #D8D8D8;
+  border-radius: 18px;
+  color: black;
+
 }
 .button {
   margin: 0 auto;
