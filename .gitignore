@@ -75,3 +75,6 @@ dist
 
 # End of https://www.gitignore.io/api/nuxtjs
 
+
+# credential file toka wo henshu surutameno key
+config/master.key.
