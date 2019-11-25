@@ -14,9 +14,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let url = URL(string : "http://192.168.137.33:3001")
+        let url = URL(string : "http://192.168.43.151:3001")
         let urlRequest = URLRequest.init(url: url!)
         self.webView.loadRequest(urlRequest)
+        webView.scrollView.bounces = false
     }
 
 
