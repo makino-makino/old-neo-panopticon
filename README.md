@@ -1,7 +1,7 @@
 # neo-panopticon
 すべてのユーザが監視し合うことによって生み出される、とっても平和なSNS
 
-[紹介スライド](https://www.slideshare.net/kino___ma/neopanopticon-hacku-sfc-2019)
+[紹介スライド](https://www.slideshare.net/kino___ma/neopanopticon-hacku-sfc-2019-201816573)
 
 ## 起動
 以下のコマンドの実行で、起動ができる。
